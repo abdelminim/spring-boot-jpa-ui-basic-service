@@ -23,17 +23,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Slf4j
+
 @RestController
-@CrossOrigin(origins = "*")
-@RequestMapping(path ="/clinic", consumes = "application/json", produces = "application/json")
+@RequestMapping(path = "/AppointmentService/api/v1/auth/")
 //@RequestMapping(path = "/cityApi/", consumes = "application/json", produces = "application/json")
 public class AppointmentController {
 	private static final Logger log = LoggerFactory.getLogger(AppointmentController.class);
 	@Autowired
 	private AppointmentService appointmentService;
 
-	@GetMapping("/getAllAppointments")
+	@GetMapping("getAllAppointments")
 	public ResponseEntity<CommonResponseDto> getAllAppointments() {
 		log.info("Start getAllAppointments");
 		CommonResponseDto commonResponseDto = appointmentService.getAllAppointments();
@@ -42,7 +41,7 @@ public class AppointmentController {
 		return ResponseEntity.ok(commonResponseDto);
 	}
 
-	@GetMapping("/getTodayAppointments")
+	@GetMapping("getTodayAppointments")
 	public ResponseEntity<CommonResponseDto> getTodayAppointments() {
 		log.info("Start getTodayAppointments");
 		CommonResponseDto commonResponseDto = appointmentService.getTodayAppointments();
@@ -50,7 +49,7 @@ public class AppointmentController {
 		log.info("End getTodayAppointments");
 		return ResponseEntity.ok(commonResponseDto);
 	}
-	@PostMapping("/appointment")
+	@PostMapping("appointment")
 	public ResponseEntity<CommonResponseDto> addAppointment(@RequestBody AppointmentJsonRequest appointment) {
 		log.info("Start addAppointment");
 
@@ -58,7 +57,7 @@ public class AppointmentController {
 		log.info("End addAppointment");
 		return ResponseEntity.ok(commonResponseDto);
 	}
-	@PutMapping("/cancelAppointment")
+	@PutMapping("cancelAppointment")
 	public ResponseEntity<CommonResponseDto> updateAppointment(@RequestBody Appointment appointment) {
 		log.info("Start updateAppointment");
 		CommonResponseDto commonResponseDto = appointmentService.updateAppointment(appointment);
@@ -66,7 +65,7 @@ public class AppointmentController {
 		return ResponseEntity.ok(commonResponseDto);
 	}
 
-	@GetMapping("/dayAppoientments")
+	@GetMapping("dayAppoientments")
 	public ResponseEntity<CommonResponseDto> getDayAppointments(@RequestParam Date date) {
 		log.info("Start getDayAppointments");
 		CommonResponseDto commonResponseDto = appointmentService.getDayAppointments(date);
@@ -74,7 +73,7 @@ public class AppointmentController {
 		return ResponseEntity.ok(commonResponseDto);
 	}
 
-	@GetMapping("/patientApoientment")
+	@GetMapping("patientApoientment")
 	public ResponseEntity<CommonResponseDto> getPatientAppointment(@RequestParam String patientName) {
 		log.info("Start getPatientAppointment");
 		CommonResponseDto commonResponseDto = appointmentService.getPatientAppointment(patientName);
@@ -83,7 +82,7 @@ public class AppointmentController {
 	}
 
 
-	@GetMapping("/patientHistory")
+	@GetMapping("patientHistory")
 	public ResponseEntity<CommonResponseDto> getPatientHistory(@RequestParam String patientName) {
 		log.info("Start getPatientHistory");
 		CommonResponseDto commonResponseDto = appointmentService.getPatientHistory(patientName);

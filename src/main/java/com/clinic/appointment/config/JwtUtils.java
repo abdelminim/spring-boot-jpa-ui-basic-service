@@ -1,4 +1,4 @@
-package io.javabrains.springsecurityjwt.util;
+package com.clinic.appointment.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

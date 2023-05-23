@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/cityApi/", consumes = "application/json", produces = "application/json")
+@RequestMapping(path = "/cityApi/auth/")
 public class CityController {
 
     private final ICityService cityService;
@@ -18,25 +18,25 @@ public class CityController {
         this.cityService = cityService;
     }
 
-    @GetMapping(value = "/cities/{id}")
+    @GetMapping(value = "cities/{id}")
     public City getCity(@PathVariable Long id) {
 
         return cityService.findById(id);
     }
 
-    @GetMapping("/welcomeCity")
+        @GetMapping("welcomeCity")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
         return String.format("Hello %s!", name);
     }
 
-    @PostMapping(value = "/cities", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(value = "createCity", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public City createCity(@RequestBody @Valid City city) {
 
         return cityService.save(city);
     }
 
-    @GetMapping(value = "/cities")
+    @GetMapping(value = "cities")
     public List<City> findAll() {
 
         return cityService.findAll();
